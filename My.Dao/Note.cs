@@ -8,6 +8,11 @@ namespace My.Dao
 {
 	public class Note
 	{
+		public Note()
+		{
+
+		}
+
 		public Note(int id, string name,  DateTime deadLine, string text)
 		{
 			Id = id;

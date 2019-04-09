@@ -14,7 +14,7 @@ namespace My.Views
 	public partial class MainForm : Form
 	{
 		NoteDao _noteDao;
-		List<Note> _noteList;
+		//List<Note> _noteList;
 		//BindingSource _noteBindingSource;
 
 		public MainForm()
@@ -22,13 +22,16 @@ namespace My.Views
 			InitializeComponent();
 
 			_noteDao = new NoteDao();
-			_noteList = _noteDao.GetAllNotes();
-
-			Init(_noteList);
+			var noteList = _noteDao.GetAllNotes();
+			Init(noteList);
 		}
 
 		private void Init(List<Note> _noteList)
 		{
+			_noteList = _noteDao.GetAllNotes();
+
+			ClearBindingSources();
+
 			//связь с заметками
 			var _noteBindingSource = new BindingSource();
 			_noteBindingSource.DataSource = _noteList;
@@ -50,9 +53,17 @@ namespace My.Views
 			dateTimePickerDeadLine.DataBindings.Clear();
 		}
 
+		/// <summary>
+		/// открыть форму добавления заметки
+		/// </summary>
 		private void btnAddNote_Click(object sender, EventArgs e)
 		{
-			MessageBox.Show("ТУТ БУДЕТ ДОБАВЛЕНИЕ НОВОЙ ЗАМЕТКИ");
+			var addForm = new AddNoteForm(_noteDao);
+			addForm.ShowDialog(); //открываем форму добавления и ждем ее закрытия
+			this.WindowState = FormWindowState.Normal;
+
+			RefreshForm();
+
 		}
 
 		private void ClearForm()
@@ -62,17 +73,40 @@ namespace My.Views
 			dateTimePickerDeadLine.Value = DateTime.Now;
 		}
 
+		private void RefreshForm()
+		{
+			var noteList = _noteDao.GetAllNotes();
+
+			Init(noteList);
+
+			if (!noteList.Any())
+				ClearForm();
+		}
+
 		private void btnDeleteNote_Click(object sender, EventArgs e)
 		{
-			var selectedNode = (Note)listBoxNotes.SelectedItem;
+			var selectedNote = (Note)listBoxNotes.SelectedItem;
 
-			_noteDao.DeleteNote(selectedNode.Id);
-			_noteList = _noteDao.GetAllNotes();
-			ClearBindingSources();
-			Init(_noteList);
+			if (selectedNote == null)
+				return;
 
-			if (!_noteList.Any())
-				ClearForm();
+			_noteDao.DeleteNote(selectedNote.Id);
+			RefreshForm();
+		}
+
+		private void btnSaveNote_click(object sender, EventArgs e)
+		{
+			//получить текущу заметку
+			var selectedNote = (Note)listBoxNotes.SelectedItem;
+
+			var allNotes = _noteDao.GetAllNotes();
+			var findedNote = allNotes.FirstOrDefault(x => x.Id == selectedNote.Id);
+
+			if (findedNote == null)
+				throw new Exception("Заметка не найдена");
+
+
+			_noteDao.UpdateNote(findedNote.Id, selectedNote.Name, selectedNote.DeadLine, selectedNote.Text);
 		}
 	}
 }

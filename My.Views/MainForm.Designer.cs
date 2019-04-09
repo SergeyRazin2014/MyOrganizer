@@ -30,17 +30,17 @@
 		{
 			this.tabControl1 = new System.Windows.Forms.TabControl();
 			this.tabPage1 = new System.Windows.Forms.TabPage();
-			this.btnAddNote = new System.Windows.Forms.Button();
-			this.tabPage2 = new System.Windows.Forms.TabPage();
-			this.listBoxNotes = new System.Windows.Forms.ListBox();
+			this.btnSaveNote = new System.Windows.Forms.Button();
+			this.label2 = new System.Windows.Forms.Label();
+			this.tbNoteName = new System.Windows.Forms.TextBox();
+			this.btnDeleteNote = new System.Windows.Forms.Button();
+			this.dateTimePickerDeadLine = new System.Windows.Forms.DateTimePicker();
 			this.label1 = new System.Windows.Forms.Label();
 			this.groupBox1 = new System.Windows.Forms.GroupBox();
-			this.dateTimePickerDeadLine = new System.Windows.Forms.DateTimePicker();
 			this.richTextBoxNote = new System.Windows.Forms.RichTextBox();
-			this.btnDeleteNote = new System.Windows.Forms.Button();
-			this.tbNoteName = new System.Windows.Forms.TextBox();
-			this.label2 = new System.Windows.Forms.Label();
-			this.button1 = new System.Windows.Forms.Button();
+			this.listBoxNotes = new System.Windows.Forms.ListBox();
+			this.btnAddNote = new System.Windows.Forms.Button();
+			this.tabPage2 = new System.Windows.Forms.TabPage();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
@@ -58,7 +58,7 @@
 			// 
 			// tabPage1
 			// 
-			this.tabPage1.Controls.Add(this.button1);
+			this.tabPage1.Controls.Add(this.btnSaveNote);
 			this.tabPage1.Controls.Add(this.label2);
 			this.tabPage1.Controls.Add(this.tbNoteName);
 			this.tabPage1.Controls.Add(this.btnDeleteNote);
@@ -75,33 +75,48 @@
 			this.tabPage1.Text = "Заметки";
 			this.tabPage1.UseVisualStyleBackColor = true;
 			// 
-			// btnAddNote
+			// btnSaveNote
 			// 
-			this.btnAddNote.Location = new System.Drawing.Point(7, 265);
-			this.btnAddNote.Name = "btnAddNote";
-			this.btnAddNote.Size = new System.Drawing.Size(75, 23);
-			this.btnAddNote.TabIndex = 0;
-			this.btnAddNote.Text = "Добавить";
-			this.btnAddNote.UseVisualStyleBackColor = true;
-			this.btnAddNote.Click += new System.EventHandler(this.btnAddNote_Click);
+			this.btnSaveNote.Location = new System.Drawing.Point(202, 265);
+			this.btnSaveNote.Name = "btnSaveNote";
+			this.btnSaveNote.Size = new System.Drawing.Size(75, 23);
+			this.btnSaveNote.TabIndex = 8;
+			this.btnSaveNote.Text = "Сохранить";
+			this.btnSaveNote.UseVisualStyleBackColor = true;
+			this.btnSaveNote.Click += new System.EventHandler(this.btnSaveNote_click);
 			// 
-			// tabPage2
+			// label2
 			// 
-			this.tabPage2.Location = new System.Drawing.Point(4, 22);
-			this.tabPage2.Name = "tabPage2";
-			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(663, 341);
-			this.tabPage2.TabIndex = 1;
-			this.tabPage2.Text = "Справочник адресов";
-			this.tabPage2.UseVisualStyleBackColor = true;
+			this.label2.AutoSize = true;
+			this.label2.Location = new System.Drawing.Point(199, 50);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(75, 13);
+			this.label2.TabIndex = 7;
+			this.label2.Text = "Имя заметки";
 			// 
-			// listBoxNotes
+			// tbNoteName
 			// 
-			this.listBoxNotes.FormattingEnabled = true;
-			this.listBoxNotes.Location = new System.Drawing.Point(7, 47);
-			this.listBoxNotes.Name = "listBoxNotes";
-			this.listBoxNotes.Size = new System.Drawing.Size(185, 212);
-			this.listBoxNotes.TabIndex = 1;
+			this.tbNoteName.Location = new System.Drawing.Point(282, 47);
+			this.tbNoteName.Name = "tbNoteName";
+			this.tbNoteName.Size = new System.Drawing.Size(379, 20);
+			this.tbNoteName.TabIndex = 6;
+			// 
+			// btnDeleteNote
+			// 
+			this.btnDeleteNote.Location = new System.Drawing.Point(87, 312);
+			this.btnDeleteNote.Name = "btnDeleteNote";
+			this.btnDeleteNote.Size = new System.Drawing.Size(75, 23);
+			this.btnDeleteNote.TabIndex = 5;
+			this.btnDeleteNote.Text = "Удалить";
+			this.btnDeleteNote.UseVisualStyleBackColor = true;
+			this.btnDeleteNote.Click += new System.EventHandler(this.btnDeleteNote_Click);
+			// 
+			// dateTimePickerDeadLine
+			// 
+			this.dateTimePickerDeadLine.Location = new System.Drawing.Point(282, 81);
+			this.dateTimePickerDeadLine.Name = "dateTimePickerDeadLine";
+			this.dateTimePickerDeadLine.Size = new System.Drawing.Size(200, 20);
+			this.dateTimePickerDeadLine.TabIndex = 4;
 			// 
 			// label1
 			// 
@@ -122,13 +137,6 @@
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "Текст заметки";
 			// 
-			// dateTimePickerDeadLine
-			// 
-			this.dateTimePickerDeadLine.Location = new System.Drawing.Point(282, 81);
-			this.dateTimePickerDeadLine.Name = "dateTimePickerDeadLine";
-			this.dateTimePickerDeadLine.Size = new System.Drawing.Size(200, 20);
-			this.dateTimePickerDeadLine.TabIndex = 4;
-			// 
 			// richTextBoxNote
 			// 
 			this.richTextBoxNote.Location = new System.Drawing.Point(7, 20);
@@ -137,40 +145,33 @@
 			this.richTextBoxNote.TabIndex = 0;
 			this.richTextBoxNote.Text = "";
 			// 
-			// btnDeleteNote
+			// listBoxNotes
 			// 
-			this.btnDeleteNote.Location = new System.Drawing.Point(88, 265);
-			this.btnDeleteNote.Name = "btnDeleteNote";
-			this.btnDeleteNote.Size = new System.Drawing.Size(75, 23);
-			this.btnDeleteNote.TabIndex = 5;
-			this.btnDeleteNote.Text = "Удалить";
-			this.btnDeleteNote.UseVisualStyleBackColor = true;
-			this.btnDeleteNote.Click += new System.EventHandler(this.btnDeleteNote_Click);
+			this.listBoxNotes.FormattingEnabled = true;
+			this.listBoxNotes.Location = new System.Drawing.Point(7, 47);
+			this.listBoxNotes.Name = "listBoxNotes";
+			this.listBoxNotes.Size = new System.Drawing.Size(185, 251);
+			this.listBoxNotes.TabIndex = 1;
 			// 
-			// tbNoteName
+			// btnAddNote
 			// 
-			this.tbNoteName.Location = new System.Drawing.Point(282, 47);
-			this.tbNoteName.Name = "tbNoteName";
-			this.tbNoteName.Size = new System.Drawing.Size(379, 20);
-			this.tbNoteName.TabIndex = 6;
+			this.btnAddNote.Location = new System.Drawing.Point(6, 312);
+			this.btnAddNote.Name = "btnAddNote";
+			this.btnAddNote.Size = new System.Drawing.Size(75, 23);
+			this.btnAddNote.TabIndex = 0;
+			this.btnAddNote.Text = "Добавить";
+			this.btnAddNote.UseVisualStyleBackColor = true;
+			this.btnAddNote.Click += new System.EventHandler(this.btnAddNote_Click);
 			// 
-			// label2
+			// tabPage2
 			// 
-			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(199, 50);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(75, 13);
-			this.label2.TabIndex = 7;
-			this.label2.Text = "Имя заметки";
-			// 
-			// button1
-			// 
-			this.button1.Location = new System.Drawing.Point(7, 294);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(75, 23);
-			this.button1.TabIndex = 8;
-			this.button1.Text = "Сохранить";
-			this.button1.UseVisualStyleBackColor = true;
+			this.tabPage2.Location = new System.Drawing.Point(4, 22);
+			this.tabPage2.Name = "tabPage2";
+			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+			this.tabPage2.Size = new System.Drawing.Size(663, 341);
+			this.tabPage2.TabIndex = 1;
+			this.tabPage2.Text = "Справочник адресов";
+			this.tabPage2.UseVisualStyleBackColor = true;
 			// 
 			// MainForm
 			// 
@@ -202,7 +203,7 @@
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.TextBox tbNoteName;
 		private System.Windows.Forms.Button btnDeleteNote;
-		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button btnSaveNote;
 	}
 }
 
