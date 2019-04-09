@@ -40,7 +40,7 @@
 			this.richTextBoxNote = new System.Windows.Forms.RichTextBox();
 			this.listBoxNotes = new System.Windows.Forms.ListBox();
 			this.btnAddNote = new System.Windows.Forms.Button();
-			this.tabPage2 = new System.Windows.Forms.TabPage();
+			this.btnOpenSubjects = new System.Windows.Forms.Button();
 			this.tabControl1.SuspendLayout();
 			this.tabPage1.SuspendLayout();
 			this.groupBox1.SuspendLayout();
@@ -49,7 +49,6 @@
 			// tabControl1
 			// 
 			this.tabControl1.Controls.Add(this.tabPage1);
-			this.tabControl1.Controls.Add(this.tabPage2);
 			this.tabControl1.Location = new System.Drawing.Point(12, 12);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
@@ -163,21 +162,22 @@
 			this.btnAddNote.UseVisualStyleBackColor = true;
 			this.btnAddNote.Click += new System.EventHandler(this.btnAddNote_Click);
 			// 
-			// tabPage2
+			// btnOpenSubjects
 			// 
-			this.tabPage2.Location = new System.Drawing.Point(4, 22);
-			this.tabPage2.Name = "tabPage2";
-			this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-			this.tabPage2.Size = new System.Drawing.Size(663, 341);
-			this.tabPage2.TabIndex = 1;
-			this.tabPage2.Text = "Справочник адресов";
-			this.tabPage2.UseVisualStyleBackColor = true;
+			this.btnOpenSubjects.Location = new System.Drawing.Point(526, 415);
+			this.btnOpenSubjects.Name = "btnOpenSubjects";
+			this.btnOpenSubjects.Size = new System.Drawing.Size(147, 23);
+			this.btnOpenSubjects.TabIndex = 20;
+			this.btnOpenSubjects.Text = "Справочник адресов";
+			this.btnOpenSubjects.UseVisualStyleBackColor = true;
+			this.btnOpenSubjects.Click += new System.EventHandler(this.btnOpenSubjects_Click);
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(695, 450);
+			this.Controls.Add(this.btnOpenSubjects);
 			this.Controls.Add(this.tabControl1);
 			this.Name = "MainForm";
 			this.Text = "Органайзер";
@@ -193,7 +193,6 @@
 
 		private System.Windows.Forms.TabControl tabControl1;
 		private System.Windows.Forms.TabPage tabPage1;
-		private System.Windows.Forms.TabPage tabPage2;
 		private System.Windows.Forms.Button btnAddNote;
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.DateTimePicker dateTimePickerDeadLine;
@@ -204,6 +203,7 @@
 		private System.Windows.Forms.TextBox tbNoteName;
 		private System.Windows.Forms.Button btnDeleteNote;
 		private System.Windows.Forms.Button btnSaveNote;
+		private System.Windows.Forms.Button btnOpenSubjects;
 	}
 }
 

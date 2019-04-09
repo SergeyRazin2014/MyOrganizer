@@ -15,15 +15,7 @@ namespace My.Dao
 
 		public NoteDao()
 		{
-			////тестовые заметки
-			//var note = new Note(1, "note1", DateTime.Now, "asdfasdfasdf1");
-			//var note1 = new Note(2, "note2", DateTime.Now, "asdfasdfasdf2");
-			//var note2 = new Note(3, "note3", new DateTime(2010, 01, 01), "asdfasdfasdf3");
-			//_noteList = new List<Note> { note, note1, note2 };
-
 			_noteList = GetAllNotes();
-
-
 		}
 
 		/// <summary>
@@ -31,8 +23,6 @@ namespace My.Dao
 		/// </summary>
 		public List<Note> GetAllNotes()
 		{
-			//return _noteList;
-
 			var path = GetPathToJson();
 
 			if (!File.Exists(path))

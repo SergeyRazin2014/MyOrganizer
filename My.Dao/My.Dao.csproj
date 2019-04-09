@@ -45,6 +45,8 @@
     <Compile Include="Note.cs" />
     <Compile Include="NoteDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Subject.cs" />
+    <Compile Include="SubjectsDao.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

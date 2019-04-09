@@ -14,21 +14,20 @@ namespace My.Views
 	public partial class MainForm : Form
 	{
 		NoteDao _noteDao;
-		//List<Note> _noteList;
-		//BindingSource _noteBindingSource;
 
 		public MainForm()
 		{
 			InitializeComponent();
 
 			_noteDao = new NoteDao();
-			var noteList = _noteDao.GetAllNotes();
-			Init(noteList);
+			Init();
+
+			
 		}
 
-		private void Init(List<Note> _noteList)
+		private void Init()
 		{
-			_noteList = _noteDao.GetAllNotes();
+			var _noteList = _noteDao.GetAllNotes();
 
 			ClearBindingSources();
 
@@ -44,6 +43,11 @@ namespace My.Views
 			richTextBoxNote.DataBindings.Add("Text", _noteBindingSource, "Text");
 			tbNoteName.DataBindings.Add("Text", _noteBindingSource, "Name");
 			dateTimePickerDeadLine.DataBindings.Add("Value", _noteBindingSource, "DeadLine");
+
+			if (!_noteList.Any())
+				DisableForm();
+			else
+				EnableForm();
 		}
 
 		private void ClearBindingSources()
@@ -77,7 +81,7 @@ namespace My.Views
 		{
 			var noteList = _noteDao.GetAllNotes();
 
-			Init(noteList);
+			Init();
 
 			if (!noteList.Any())
 				ClearForm();
@@ -88,10 +92,29 @@ namespace My.Views
 			var selectedNote = (Note)listBoxNotes.SelectedItem;
 
 			if (selectedNote == null)
+			{
+				DisableForm();
 				return;
+			}
 
 			_noteDao.DeleteNote(selectedNote.Id);
 			RefreshForm();
+		}
+
+		private void DisableForm()
+		{
+			tbNoteName.Enabled = false;
+			dateTimePickerDeadLine.Enabled = false;
+			richTextBoxNote.Enabled = false;
+			btnSaveNote.Enabled = false;
+		}
+
+		private void EnableForm()
+		{
+			tbNoteName.Enabled             = true;
+			dateTimePickerDeadLine.Enabled = true;
+			richTextBoxNote.Enabled        = true;
+			btnSaveNote.Enabled            = true;
 		}
 
 		private void btnSaveNote_click(object sender, EventArgs e)
@@ -107,6 +130,18 @@ namespace My.Views
 
 
 			_noteDao.UpdateNote(findedNote.Id, selectedNote.Name, selectedNote.DeadLine, selectedNote.Text);
+		}
+
+
+		/// <summary>
+		/// отобразить форму с адресами
+		/// </summary>
+		private void btnOpenSubjects_Click(object sender, EventArgs e)
+		{
+			var subjectForm = new SubjectForm();
+			subjectForm.ShowDialog();
+			this.WindowState = FormWindowState.Normal;
+
 		}
 	}
 }
